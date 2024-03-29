@@ -13,7 +13,7 @@ class BugReportsController < ApplicationController
     end
 
     def create
-        @bug_report = BugReport.new(bug_report_params)
+        @bug_report = BugReport.new(bug_report_params.merge(user_id: current_user.id))
         if @bug_report.save
             redirect_to @bug_report, notice: "Bug report created successfully!"
 

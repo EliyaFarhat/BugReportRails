@@ -1,3 +1,4 @@
+
 <h1>Bug Reports</h1>
 
 <% @bug_reports.each do |bug_report| %>
@@ -7,3 +8,11 @@
     </div>
 <% end %>
 
+
+<br/>
+<br/>
+<br/>
+<% if user_signed_in? %>
+<p>Logged in as:</p>
+<%= current_user.email %>
+<% end %>

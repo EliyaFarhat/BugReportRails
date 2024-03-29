@@ -3,7 +3,7 @@ class CreateBugReports < ActiveRecord::Migration[7.1]
     create_table :bug_reports do |t|
       t.string :title
       t.text :summary
-
+      
       t.timestamps
     end
   end
