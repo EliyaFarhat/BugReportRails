@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_29_230243) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_30_025858) do
   create_table "bug_reports", force: :cascade do |t|
     t.string "title"
     t.text "summary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.string "status", default: "Open"
     t.index ["user_id"], name: "index_bug_reports_on_user_id"
   end
 

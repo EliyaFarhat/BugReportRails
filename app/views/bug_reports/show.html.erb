@@ -1,2 +1,16 @@
+<br/>
+<br/>
+<h3>Status: <%= @bug_report.status %></h3>
 <h1><%= @bug_report.title %></h1>
+<% if current_user == @bug_report.user %>
+    <p>Created by: <%= @bug_report.user.email %> (You own this)</p>
+    <p>Updated at: <%= @bug_report.updated_at%></p>
+    <p><%= link_to "Edit your report", edit_bug_report_path %></p>
+<% else %>
+     <p>Created by: <%= @bug_report.user.email %> </p>
+     <p>Updated at: <%= @bug_report.updated_at%></p>
+<% end %>
+
+<h3>Description: </h3>
 <%= @bug_report.summary %>
+<br/>
