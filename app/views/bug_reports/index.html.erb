@@ -1,11 +1,13 @@
 
-<h1>Bug Reports</h1>
+<div class="reports"><h1>Bug Reports</h1>
 
 <% @bug_reports.each do |bug_report| %>
-    <div style="width:50%">
-        <h2><%= link_to bug_report.title, bug_report %></h2>
+    <div class="title"><h2><%= link_to "##{bug_report.id} - #{bug_report.title}", bug_report %></h2></div>
+    <div class="report">
+        
         <%= bug_report.summary %>
     </div>
 <% end %>
+</div>
 
 
