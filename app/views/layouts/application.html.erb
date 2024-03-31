@@ -33,9 +33,9 @@
     <p class="notice" style="color:lightgreen"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <div>
-      <h2><%= link_to "View All Bug Reports", root_path %>
+      <h2><%= link_to "Bug Library", root_path %>
       <% if user_signed_in? %>
-      <%= link_to "Create Bug Report", new_bug_report_path %>
+      <%= link_to "Create Report", new_bug_report_path %>
       <% else %>
         <%= link_to "Log In", new_user_session_path %>
         <%= link_to "Sign Up", new_user_registration_path %>
