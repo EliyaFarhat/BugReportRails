@@ -12,21 +12,22 @@
 
   <body>
     <style>
-      body { color: white}
-      * {background-color: 	rgb(32,32,32)}
+      body { color: white;}
+      * {background-color: 	rgb(31, 31, 31); font-family: Arial !important;}
       button {color:white; background-color: gray}
-      a {color: rgb(51, 153, 255)}
-      a:hover {opacity: 80%}
+      a {color: rgb(51, 153, 255); background-color:transparent; text-decoration: none;}
+      a:hover {opacity: 80%; text-decoration:underline}
       input {background-color: white}
       textarea {background-color: white}
       p {color: rgb(136,136,136)}
-      .report {background-color:rgb(61, 61, 61);
+      .report {background-color:rgb(21, 21, 21);
        border-radius: 7px;word-wrap: break-word;
-       width: 50%; min-width: 100px; padding: 10px; text-align:left; max-width: 800px; margin:auto}
+       width: 50%; min-width: 100px; padding-left: 10px; 
+       padding-right: 10px; text-align:left; max-width: 800px; 
+       padding-bottom: 10px;padding-top: 5px;  margin:auto; color:lightgray; margin-bottom:40px;  border:1px solid rgb(125, 125, 125);}
        .reports {margin:auto; text-align: center}
-       .title {word-wrap: break-word;
-       border-radius: 7px;
-       width: 50%; min-width: 100px; ; text-align:left; max-width: 800px; margin:auto}
+       
+       .h2title {background-color:rgb(21, 21, 21); margin-top:5px}
       
     </style>
     <p class="notice" style="color:lightgreen"><%= notice %></p>
