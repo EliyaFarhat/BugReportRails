@@ -2,7 +2,7 @@
 <h1>Bug Reports</h1>
 
 <% @bug_reports.each do |bug_report| %>
-    <div>
+    <div style="width:50%">
         <h2><%= link_to bug_report.title, bug_report %></h2>
         <%= bug_report.summary %>
     </div>
