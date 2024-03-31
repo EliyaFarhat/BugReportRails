@@ -1,7 +1,7 @@
 
 <div class="reports"><h1>Bug Reports</h1>
 
-<% @bug_reports.each do |bug_report| %>
+<% @bug_reports.reverse_each do |bug_report| %>
     <div class="title"><h2><%= link_to "##{bug_report.id} - #{bug_report.title}", bug_report %></h2></div>
     <div class="report">
         
