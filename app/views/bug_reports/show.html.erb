@@ -1,10 +1,16 @@
 <br/>
 <br/>
-<h3>Status: <%= @bug_report.status %></h3>
+<div class="singlereport">
+<%if @bug_report.status == "Open"%>
+    <h3 style="color:lightgreen">Status: <%= @bug_report.status %></h3>
+<%else%>
+    <h3 style="color:red">Status: <%= @bug_report.status %></h3>
+<%end%>
+
 <h1><%= @bug_report.title %></h1>
 <% if current_user == @bug_report.user %>
 <p>Report #: <%= @bug_report.id %> </p>
-    <p>Created by: <%= @bug_report.user.email %> (You own this)</p>
+    <p style="color:lightgreen">Created by: <%= @bug_report.user.email %> (You own this)</p>
     <p>Updated at: <%= @bug_report.updated_at%></p>
     <p><%= link_to "Edit your report", edit_bug_report_path %></p>
 <% else %>
@@ -16,3 +22,64 @@
 <h3>Description: </h3>
 <%= @bug_report.summary %>
 <br/>
+<br/>
+</div>
+<div class="commentblock">
+<%if user_signed_in? %>
+<div class="commentformtop">
+<h3>Add a comment:</h3>
+<%= form_with(model: [ @bug_report, @bug_report.comments.build ], local: true, class: "commentform") do |form|%>
+     <% if form.object.errors.any? %>
+            <div>
+                <% form.object.errors.full_messages.each do |message| %>
+                <div><%= message %> </div>
+                
+                <% end %>
+            </div>
+            <br/>
+     <%end%>
+     <div class="form">
+        <%= form.hidden_field :bug_report_id %>
+            <div class="field">
+                <%= form.label "Write a comment:" %>
+                <br/>
+                <%= form.text_area :content, rows: 6 %>
+            </div>
+
+            <div class="actions">
+                <%= form.submit "Add Comment" %>
+            </div>
+    </div>
+<%end%>
+<%else%>
+<p>You must be logged in to add comments.</p>
+<%end%>
+</div>
+
+
+
+<%if @bug_report.comments.count > 0 %>
+<div class="eachcommentholder">
+<h3> Comments: </h3>
+</div>
+<% @bug_report.comments.reverse_each do |comment| %>
+        <%if  comment.content.present? %>
+        <div class="comment">
+            <%= comment.content %> <br/>
+            <br/>
+            <%if current_user == comment.user %>
+            <small style="color:lightgreen"><%= comment.user.try(:email) %> (You own this)</small>
+            <%else%>
+            <small><%= comment.user.try(:email) %></small>
+            <%end%>
+            <br/>
+            <small><%= comment.updated_at%></small>
+        </div>
+        <br/>
+    <% end %>
+    <%end%>
+<%else%>
+<p>No comments yet.</p>
+<%end%>
+
+</div>

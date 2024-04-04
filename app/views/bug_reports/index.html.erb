@@ -3,8 +3,17 @@
 
 <% @bug_reports.reverse_each do |bug_report| %>
     
-    <div class="report">
+    <div class="report <%= 'closed' if bug_report.status == 'Closed' %>">
         <h2 class="h2title"><%= link_to "##{bug_report.id} - #{bug_report.title}", bug_report %></h2>
+        <p class="status">Status: <%= bug_report.status %></p>
+        <% if current_user == bug_report.user %>
+    <p style="color:lightgreen">Created by: <%= bug_report.user.email %> (You own this)</p>
+    <p>Updated at: <%= bug_report.updated_at%></p>
+    <p><%= link_to "Edit your report", edit_bug_report_path(bug_report.id) %></p>
+<% else %>
+     <p>Created by: <%= bug_report.user.email %> </p>
+     <p>Updated at: <%= bug_report.updated_at%></p>
+<% end %>
         <%= bug_report.summary %>
     </div>
 <% end %>

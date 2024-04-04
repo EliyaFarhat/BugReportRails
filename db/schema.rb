@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_30_025858) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_04_040601) do
   create_table "bug_reports", force: :cascade do |t|
     t.string "title"
     t.text "summary"
@@ -19,6 +19,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_025858) do
     t.integer "user_id", null: false
     t.string "status", default: "Open"
     t.index ["user_id"], name: "index_bug_reports_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content", null: false
+    t.integer "bug_report_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bug_report_id"], name: "index_comments_on_bug_report_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,4 +44,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_025858) do
   end
 
   add_foreign_key "bug_reports", "users"
+  add_foreign_key "comments", "bug_reports"
+  add_foreign_key "comments", "users"
 end
