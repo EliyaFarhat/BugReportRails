@@ -2,5 +2,5 @@ class BugReport < ApplicationRecord
   validates :title, presence: true
   validates :summary, presence: true
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
 end
