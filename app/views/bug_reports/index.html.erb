@@ -1,6 +1,8 @@
 
-<div class="reports"><h1>Bug Reports</h1>
 
+
+<% if @bug_reports.any? %>
+<div class="reports"><h1>Bug Reports</h1>
 <% @bug_reports.reverse_each do |bug_report| %>
     
     <div class="report <%= 'closed' if bug_report.status == 'Closed' %>">
@@ -17,6 +19,9 @@
         <%= bug_report.summary %>
     </div>
 <% end %>
+<%else%>
+<div class="reports"><p style="font-size:20px">Hooray! No bugs yet.</p></div>
+<%end%>
 </div>
 
 
